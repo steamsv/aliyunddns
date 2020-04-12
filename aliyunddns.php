@@ -90,7 +90,8 @@ if($ip!=$record_info['DomainRecords']['Record'][0]['Value']){
     $result = curl_exec($ch);
     curl_close($ch); return $result;
     if($text){
-        $url = "https://api.telegram.org/bot$tgkey/sendMessage?chat_id=&$chatid,text=服务器:$name,新IP为:$ip";
+        $text = "服务器:$name,新IP为:$ip";
+        $url = "https://api.telegram.org/bot$tgkey/sendMessage?chat_id=&$chatid&text=$text";
         echo send_get($url);
     }else{
         echo "Please Input";
