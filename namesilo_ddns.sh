@@ -12,11 +12,11 @@
 
 ## Your API key of Namesilo
 ## https://www.namesilo.com/account_api.php
-APIKEY="e580f33ba5369807f39e"
+APIKEY="e"
 
 ## Your domains list
 HOST=(
-    "ssrvpn.org"
+    "www.baidu.com"
 )
 
 ## =========== Developer settings ============
@@ -281,7 +281,7 @@ function update_records()
             REQ="${REQ}?version=1&type=xml&domain=${DOMAIN[i]}"
             REQ="${REQ}&rrhost=${RRHOST[i]}&rrvalue=${!IP_NAME}"
             VAR="RRID_${IP_TYPE}[${i}]";  REQ="${REQ}&rrid=${!VAR}"
-            VAR="RRTTL_${IP_TYPE}[${i}]"; REQ="${REQ}&rrttl=${!VAR}"
+            VAR="RRTTL_${IP_TYPE}[${i}]"; REQ="${REQ}&rrttl=3600"
 
             VAR="IP_RECORD_${IP_TYPE}"
             STAGE[${i}]="${STAGE[i]}-->update(${!VAR})"
