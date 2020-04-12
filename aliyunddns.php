@@ -11,6 +11,9 @@
 $GLOBALS['AccessKeyId'] = '';  //填Access Key Id
 $GLOBALS['AccessKeySecret'] = ''; //填Access Key Secret
 $GLOBALS['DomainName'] = ''; //填域名
+$GLOBALS['tgkey'] = '';
+$GLOBALS['chatid'] = '';
+$GLOBALS['name'] = '';
 
 $ip = trim(file_get_contents('http://ip.cip.cc'));  //你当前的真实ip，也就是你要解析的ip
 date_default_timezone_set("UTC");//设置时区为utc
@@ -79,4 +82,8 @@ if($ip!=$record_info['DomainRecords']['Record'][0]['Value']){
     $update_param['Value']=$ip;
     $update_url=get_url($update_param);
     $res=request_get($update_url);
+    message_text="服务器：$$GLOBALS['name']，新的IP为：$ip，请注意服务器状态";
+    MODE='HTML';
+    URL="https://api.telegram.org/bot$GLOBALS['tgkey']/sendMessage";
+    curl -s -X POST $URL -d chat_id=$GLOBALS['chatid']  -d parse_mode=${MODE} -d text="${message_text}";
 }
